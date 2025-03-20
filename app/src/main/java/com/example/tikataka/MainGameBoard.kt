@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.graphics.toColorInt
 
 class MainGameBoard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +58,7 @@ class MainGameBoard : AppCompatActivity() {
                                             (resultCheck[2]==resultCheck[4] && resultCheck[4]==resultCheck[6] && resultCheck[6]!="-")
                 ){
                 val intent = Intent(this, MainWinner::class.java);
-                intent.putExtra("winner1",move[1-activePlayer].toString())
+                intent.putExtra("winner",move[1-activePlayer].toString())
                 startActivity(intent);
 
             }
@@ -71,9 +72,9 @@ class MainGameBoard : AppCompatActivity() {
         }
         for (n in 0..8) {
             boardFields[n].setOnClickListener {
-                boardFields[n].setText("${move[activePlayer].toString()}");
-                boardFields[n].setTextColor(Color.parseColor("#ffffff"))
-                boardFields[n].setBackgroundColor(Color.parseColor("#EC0C0C"))
+                boardFields[n].setText(move[activePlayer].toString());
+                boardFields[n].setTextColor("#ffffff".toColorInt())
+                boardFields[n].setBackgroundColor("#EC0C0C".toColorInt())
                 boardFields[n].isEnabled = false
                 activePlayer = playerChange(activePlayer);
                 checkBoard()
