@@ -35,8 +35,6 @@ class MainWinner : AppCompatActivity() {
             image.setImageResource(R.drawable.o_win)
         }
 
-
-
         val btnPlay: Button = findViewById(R.id.button_play);
         btnPlay.setOnClickListener {
             val intent = Intent(this, MainGameBoard::class.java);

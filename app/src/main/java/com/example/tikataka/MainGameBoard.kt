@@ -47,6 +47,12 @@ class MainGameBoard : AppCompatActivity() {
 
         fun checkBoard(){
             var resultCheck=arrayOf(boardFields[0].text,boardFields[1].text,boardFields[2].text,boardFields[3].text,boardFields[4].text,boardFields[5].text,boardFields[6].text,boardFields[7].text,boardFields[8].text);
+            if(resultCheck[0]!="-" && resultCheck[1]!="-" && resultCheck[2]!="-" &&
+                resultCheck[3]!="-" && resultCheck[4]!="-" && resultCheck[5]!="-"
+                && resultCheck[6]!="-" && resultCheck[7]!="-" && resultCheck[8]!="-"){
+                val intent = Intent(this, MainWinner::class.java);
+                startActivity(intent);
+            }
 
             if ((resultCheck[0]==resultCheck[1] && resultCheck[1]==resultCheck[2] && resultCheck[1]!="-") ||
                     (resultCheck[3]==resultCheck[4] && resultCheck[4]==resultCheck[5] && resultCheck[4]!="-") ||
@@ -62,12 +68,7 @@ class MainGameBoard : AppCompatActivity() {
                 startActivity(intent);
 
             }
-            if(resultCheck[0]!="-" && resultCheck[1]!="-" && resultCheck[2]!="-" &&
-                resultCheck[3]!="-" && resultCheck[4]!="-" && resultCheck[5]!="-"
-                && resultCheck[6]!="-" && resultCheck[7]!="-" && resultCheck[8]!="-"){
-                val intent = Intent(this, MainWinner::class.java);
-                startActivity(intent);
-            }
+
 
         }
         for (n in 0..8) {
