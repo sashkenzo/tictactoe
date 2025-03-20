@@ -30,7 +30,7 @@ class MainGameBoard : AppCompatActivity() {
 
         fun playerChange(num: Int): Int{ return 1-num }
 
-        val move = arrayOf('X', 'O');
+        var move = arrayOf('X', 'O');
 
             val field0x0: Button = findViewById(R.id.field_0_0);
             val field0x1: Button = findViewById(R.id.field_0_1);
@@ -46,20 +46,24 @@ class MainGameBoard : AppCompatActivity() {
 
         fun checkBoard(){
             var resultCheck=arrayOf(boardFields[0].text,boardFields[1].text,boardFields[2].text,boardFields[3].text,boardFields[4].text,boardFields[5].text,boardFields[6].text,boardFields[7].text,boardFields[8].text);
+
             if ((resultCheck[0]==resultCheck[1] && resultCheck[1]==resultCheck[2] && resultCheck[1]!="-") ||
                     (resultCheck[3]==resultCheck[4] && resultCheck[4]==resultCheck[5] && resultCheck[4]!="-") ||
                         (resultCheck[6]==resultCheck[7] && resultCheck[7]==resultCheck[8] && resultCheck[7]!="-") ||
                             (resultCheck[0]==resultCheck[3] && resultCheck[3]==resultCheck[6] && resultCheck[3]!="-") ||
                                 (resultCheck[1]==resultCheck[4] && resultCheck[4]==resultCheck[7] && resultCheck[4]!="-") ||
-                                    (resultCheck[2]==resultCheck[5] && resultCheck[5]==resultCheck[8] && resultCheck[4]!="-") ||
-                                        (resultCheck[0]==resultCheck[4] && resultCheck[4]==resultCheck[7] && resultCheck[4]!="-") ||
-                                            (resultCheck[2]==resultCheck[4] && resultCheck[4]==resultCheck[6] && resultCheck[4]!="-")
+                                    (resultCheck[2]==resultCheck[5] && resultCheck[5]==resultCheck[8] && resultCheck[5]!="-") ||
+                                        (resultCheck[0]==resultCheck[4] && resultCheck[4]==resultCheck[8] && resultCheck[8]!="-") ||
+                                            (resultCheck[2]==resultCheck[4] && resultCheck[4]==resultCheck[6] && resultCheck[6]!="-")
                 ){
                 val intent = Intent(this, MainWinner::class.java);
+                intent.putExtra("winner1",move[1-activePlayer].toString())
                 startActivity(intent);
 
             }
-            if(resultCheck[0]!="-" && resultCheck[1]!="-" && resultCheck[2]!="-" && resultCheck[3]!="-" && resultCheck[4]!="-" && resultCheck[5]!="-" && resultCheck[6]!="-" && resultCheck[7]!="-" && resultCheck[8]!="-"){
+            if(resultCheck[0]!="-" && resultCheck[1]!="-" && resultCheck[2]!="-" &&
+                resultCheck[3]!="-" && resultCheck[4]!="-" && resultCheck[5]!="-"
+                && resultCheck[6]!="-" && resultCheck[7]!="-" && resultCheck[8]!="-"){
                 val intent = Intent(this, MainWinner::class.java);
                 startActivity(intent);
             }

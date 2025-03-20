@@ -3,6 +3,7 @@ package com.example.tikataka
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,6 +19,24 @@ class MainWinner : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        var winner= getIntent().getStringExtra("winner1")
+
+
+        var text_winner2 : TextView = findViewById(R.id.text_winner2)
+        if(winner==null){
+            text_winner2.text="ничья";
+        }
+        if (winner=="X"){
+            text_winner2.text="победил игрок "+winner;
+
+        }
+        if (winner=="O"){
+            text_winner2.text="победил игрок "+winner;
+
+        }
+
+
+
         val btnPlay: Button = findViewById(R.id.button_play);
         btnPlay.setOnClickListener {
             val intent = Intent(this, MainGameBoard::class.java);
