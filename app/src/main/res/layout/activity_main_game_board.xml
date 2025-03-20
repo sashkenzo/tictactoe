@@ -28,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="X"
+                android:text="-"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -37,7 +37,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="O" />
+                android:text="-" />
 
             <Button
                 android:id="@+id/field_0_2"
@@ -45,7 +45,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="X" />
+                android:text="-" />
         </LinearLayout>
 
         <LinearLayout
@@ -60,7 +60,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="X" />
+                android:text="-" />
 
             <Button
                 android:id="@+id/field_1_1"
@@ -68,7 +68,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="O" />
+                android:text="-" />
 
             <Button
                 android:id="@+id/field_1_2"
@@ -76,7 +76,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="X" />
+                android:text="-" />
         </LinearLayout>
 
         <LinearLayout
@@ -91,7 +91,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="O" />
+                android:text="-" />
 
             <Button
                 android:id="@+id/field_2_1"
@@ -99,7 +99,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="X" />
+                android:text="-" />
 
             <Button
                 android:id="@+id/field_2_2"
@@ -107,7 +107,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
                 android:layout_weight="1"
-                android:text="O" />
+                android:text="-" />
         </LinearLayout>
     </LinearLayout>
 

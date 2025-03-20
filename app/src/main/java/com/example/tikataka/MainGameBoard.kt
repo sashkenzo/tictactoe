@@ -32,33 +32,49 @@ class MainGameBoard : AppCompatActivity() {
 
         val move = arrayOf('X', 'O');
 
-        var board = arrayOf(arrayOf('-', '-', '-'), arrayOf('-', '-', '-'), arrayOf('-', '-', '-'))
+            val field0x0: Button = findViewById(R.id.field_0_0);
+            val field0x1: Button = findViewById(R.id.field_0_1);
+            val field0x2: Button = findViewById(R.id.field_0_2);
+            val field1x0: Button = findViewById(R.id.field_1_0);
+            val field1x1: Button = findViewById(R.id.field_1_1);
+            val field1x2: Button = findViewById(R.id.field_1_2);
+            val field2x0: Button = findViewById(R.id.field_2_0);
+            val field2x1: Button = findViewById(R.id.field_2_1);
+            val field2x2: Button = findViewById(R.id.field_2_2);
 
-        var board_2 = Array(3) { Array(3) { '-' } }
+        var boardFields = arrayOf(field0x0,field0x1,field0x2,field1x0,field1x1,field1x2,field2x0,field2x1,field2x2);
 
-        fun btnPressMoves(field: String) {
-            val btnField: Button = findViewById(R.id.field_0_0);
-            btnField.setOnClickListener {
+        fun checkBoard(){
+            var resultCheck=arrayOf(boardFields[0].text,boardFields[1].text,boardFields[2].text,boardFields[3].text,boardFields[4].text,boardFields[5].text,boardFields[6].text,boardFields[7].text,boardFields[8].text);
+            if ((resultCheck[0]==resultCheck[1] && resultCheck[1]==resultCheck[2] && resultCheck[1]!="-") ||
+                    (resultCheck[3]==resultCheck[4] && resultCheck[4]==resultCheck[5] && resultCheck[4]!="-") ||
+                        (resultCheck[6]==resultCheck[7] && resultCheck[7]==resultCheck[8] && resultCheck[7]!="-") ||
+                            (resultCheck[0]==resultCheck[3] && resultCheck[3]==resultCheck[6] && resultCheck[3]!="-") ||
+                                (resultCheck[1]==resultCheck[4] && resultCheck[4]==resultCheck[7] && resultCheck[4]!="-") ||
+                                    (resultCheck[2]==resultCheck[5] && resultCheck[5]==resultCheck[8] && resultCheck[4]!="-") ||
+                                        (resultCheck[0]==resultCheck[4] && resultCheck[4]==resultCheck[7] && resultCheck[4]!="-") ||
+                                            (resultCheck[2]==resultCheck[4] && resultCheck[4]==resultCheck[6] && resultCheck[4]!="-")
+                ){
+                val intent = Intent(this, MainWinner::class.java);
+                startActivity(intent);
 
-                btnField.setText("${move[activePlayer].toString()}");
-                btnField.setTextColor(Color.parseColor("#ffffff"))
-                btnField.setBackgroundColor(Color.parseColor("#EC0C0C"))
-                //btnField.isEnabled = false
-                activePlayer=playerChange(activePlayer);
-                }
+            }
+            if(resultCheck[0]!="-" && resultCheck[1]!="-" && resultCheck[2]!="-" && resultCheck[3]!="-" && resultCheck[4]!="-" && resultCheck[5]!="-" && resultCheck[6]!="-" && resultCheck[7]!="-" && resultCheck[8]!="-"){
+                val intent = Intent(this, MainWinner::class.java);
+                startActivity(intent);
             }
 
-            val btnField0x0: Button = findViewById(R.id.field_0_0);
-            btnField0x0.setOnClickListener {
-
-                btnField0x0.setText("${move[activePlayer].toString()}");
-                btnField0x0.setTextColor(Color.parseColor("#ffffff"))
-                btnField0x0.setBackgroundColor(Color.parseColor("#EC0C0C"))
-                btnField0x0.isEnabled = false
-                activePlayer=playerChange(activePlayer);
-
+        }
+        for (n in 0..8) {
+            boardFields[n].setOnClickListener {
+                boardFields[n].setText("${move[activePlayer].toString()}");
+                boardFields[n].setTextColor(Color.parseColor("#ffffff"))
+                boardFields[n].setBackgroundColor(Color.parseColor("#EC0C0C"))
+                boardFields[n].isEnabled = false
+                activePlayer = playerChange(activePlayer);
+                checkBoard()
             }
-
+        }
 
 
         }
