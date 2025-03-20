@@ -23,5 +23,11 @@ class MainAbout : AppCompatActivity() {
             val intent = Intent(this, MainGameBoard::class.java);
             startActivity(intent);
         }
+        //val btnExit: Button = findViewById(R.id.button_exit);
+        //btnExit.setOnClickListener {
+        //    val activity: MainActivity = MainActivity()
+        //    activity.finish()
+        //    System.exit(0)
+        //}
     }
 }
