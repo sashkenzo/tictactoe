@@ -25,7 +25,6 @@ class MainAbout : AppCompatActivity() {
         }
         val btnExit: Button = findViewById(R.id.button_exit);
         btnExit.setOnClickListener {
-
         finishAffinity()
         }
     }
