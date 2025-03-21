@@ -4,11 +4,15 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Switch
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.graphics.toColorInt
+import kotlinx.coroutines.delay
+import kotlin.random.Random
 
 class MainGameBoard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,59 +33,109 @@ class MainGameBoard : AppCompatActivity() {
 
         var activePlayer = 0;
 
-        fun playerChange(num: Int): Int{ return 1-num }
+        val move = arrayOf("X", "O");
 
-        var move = arrayOf('X', 'O');
+        var saveMove = arrayOf("", "", "", "", "", "", "", "", "")
 
-            val field0x0: Button = findViewById(R.id.field_0_0);
-            val field0x1: Button = findViewById(R.id.field_0_1);
-            val field0x2: Button = findViewById(R.id.field_0_2);
-            val field1x0: Button = findViewById(R.id.field_1_0);
-            val field1x1: Button = findViewById(R.id.field_1_1);
-            val field1x2: Button = findViewById(R.id.field_1_2);
-            val field2x0: Button = findViewById(R.id.field_2_0);
-            val field2x1: Button = findViewById(R.id.field_2_1);
-            val field2x2: Button = findViewById(R.id.field_2_2);
+        var countMove = 0
 
-        var boardFields = arrayOf(field0x0,field0x1,field0x2,field1x0,field1x1,field1x2,field2x0,field2x1,field2x2);
 
-        fun checkBoard(){
-            var resultCheck=arrayOf(boardFields[0].text,boardFields[1].text,boardFields[2].text,boardFields[3].text,boardFields[4].text,boardFields[5].text,boardFields[6].text,boardFields[7].text,boardFields[8].text);
-            if(resultCheck[0]!="-" && resultCheck[1]!="-" && resultCheck[2]!="-" &&
-                resultCheck[3]!="-" && resultCheck[4]!="-" && resultCheck[5]!="-"
-                && resultCheck[6]!="-" && resultCheck[7]!="-" && resultCheck[8]!="-"){
+        val field0: Button = findViewById(R.id.field_0_0);
+        val field1: Button = findViewById(R.id.field_0_1);
+        val field2: Button = findViewById(R.id.field_0_2);
+        val field3: Button = findViewById(R.id.field_1_0);
+        val field4: Button = findViewById(R.id.field_1_1);
+        val field5: Button = findViewById(R.id.field_1_2);
+        val field6: Button = findViewById(R.id.field_2_0);
+        val field7: Button = findViewById(R.id.field_2_1);
+        val field8: Button = findViewById(R.id.field_2_2);
+
+        val boardTiles =
+            arrayOf(field0, field1, field2, field3, field4, field5, field6, field7, field8);
+
+
+        fun playerChange(num: Int): Int {
+            return 1 - num
+        }
+
+        fun drawCheck(result: Array<Button>): Boolean {
+            if (result[0].text != "-" && result[1].text != "-" && result[2].text != "-" &&
+                result[3].text != "-" && result[4].text != "-" && result[5].text != "-" &&
+                result[6].text != "-" && result[7].text != "-" && result[8].text != "-"
+            ) {
+                return true
+            } else {
+                return false
+            }
+
+        }
+
+        fun matchCheck(result: Array<Button>, player: String): Boolean {
+
+            if ((result[0].text == player && result[1].text == player && result[2].text == player) ||
+                (result[3].text == player && result[4].text == player && result[5].text == player) ||
+                (result[6].text == player && result[7].text == player && result[8].text == player) ||
+                (result[0].text == player && result[3].text == player && result[6].text == player) ||
+                (result[1].text == player && result[4].text == player && result[7].text == player) ||
+                (result[2].text == player && result[5].text == player && result[8].text == player) ||
+                (result[0].text == player && result[4].text == player && result[8].text == player) ||
+                (result[2].text == player && result[4].text == player && result[6].text == player)
+            ) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        fun playerMove(moveTile: Int, saveMove: Array<String>, boardTiles: Array<Button>) {
+            boardTiles[moveTile].setText(move[activePlayer].toString());
+            boardTiles[moveTile].setTextColor("#ffffff".toColorInt())
+            boardTiles[moveTile].setBackgroundColor("#EC0C0C".toColorInt())
+            boardTiles[moveTile].isEnabled = false
+            saveMove[moveTile] = move[activePlayer]
+            countMove += 1
+            if (drawCheck(boardTiles) && !matchCheck(boardTiles, move[activePlayer])) {
                 val intent = Intent(this, MainWinner::class.java);
                 startActivity(intent);
             }
-
-            if ((resultCheck[0]==resultCheck[1] && resultCheck[1]==resultCheck[2] && resultCheck[1]!="-") ||
-                    (resultCheck[3]==resultCheck[4] && resultCheck[4]==resultCheck[5] && resultCheck[4]!="-") ||
-                        (resultCheck[6]==resultCheck[7] && resultCheck[7]==resultCheck[8] && resultCheck[7]!="-") ||
-                            (resultCheck[0]==resultCheck[3] && resultCheck[3]==resultCheck[6] && resultCheck[3]!="-") ||
-                                (resultCheck[1]==resultCheck[4] && resultCheck[4]==resultCheck[7] && resultCheck[4]!="-") ||
-                                    (resultCheck[2]==resultCheck[5] && resultCheck[5]==resultCheck[8] && resultCheck[5]!="-") ||
-                                        (resultCheck[0]==resultCheck[4] && resultCheck[4]==resultCheck[8] && resultCheck[8]!="-") ||
-                                            (resultCheck[2]==resultCheck[4] && resultCheck[4]==resultCheck[6] && resultCheck[6]!="-")
-                ){
+            if (matchCheck(boardTiles, move[activePlayer])) {
                 val intent = Intent(this, MainWinner::class.java);
-                intent.putExtra("winner",move[1-activePlayer].toString())
+                intent.putExtra(
+                    "winner", move[activePlayer].toString(),
+                )
                 startActivity(intent);
-
             }
+            activePlayer = playerChange(activePlayer);
 
 
         }
+
+
+        fun randomTile(saveMove: Array<String>): Int {
+            while (true) {
+                val nextMove = Random.nextInt(0, 8)
+                if (saveMove[nextMove] == "") {
+                    return nextMove
+                }
+            }
+        }
+
+
         for (n in 0..8) {
-            boardFields[n].setOnClickListener {
-                boardFields[n].setText(move[activePlayer].toString());
-                boardFields[n].setTextColor("#ffffff".toColorInt())
-                boardFields[n].setBackgroundColor("#EC0C0C".toColorInt())
-                boardFields[n].isEnabled = false
-                activePlayer = playerChange(activePlayer);
-                checkBoard()
+
+            boardTiles[n].setOnClickListener {
+                if (activePlayer == 0) {
+                    playerMove(n, saveMove, boardTiles)
+                }
+                if (activePlayer == 1 && countMove<9) {
+                    val nextMove = randomTile(saveMove)
+                    playerMove(nextMove, saveMove, boardTiles)
+                }
             }
-        }
-
-
         }
     }
+}
+
+
+
+
