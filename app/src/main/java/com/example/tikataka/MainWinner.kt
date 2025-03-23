@@ -20,6 +20,7 @@ class MainWinner : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val player = getIntent().getStringExtra("winner")
         var winner= getIntent().getStringExtra("winner")
         val image : ImageView = findViewById(R.id.imageView2)
         var text_winner2 : TextView = findViewById(R.id.text_winner2)
@@ -36,13 +37,17 @@ class MainWinner : AppCompatActivity() {
         }
 
         val btnPlay: Button = findViewById(R.id.button_play);
+
         btnPlay.setOnClickListener {
-            val intent = Intent(this, MainGameBoard::class.java);
+            val intent = Intent(this, MainActivity::class.java);
             startActivity(intent);
         }
         val btnAbout: Button = findViewById(R.id.button_about);
+
         btnAbout.setOnClickListener {
+
             val intent = Intent(this, MainAbout::class.java);
+
             startActivity(intent);
         }
     }

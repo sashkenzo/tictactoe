@@ -9,8 +9,11 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="fill_parent"
+        android:layout_width="350dp"
         android:layout_height="350dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,27 +27,23 @@
 
             <Button
                 android:id="@+id/field_0_0"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                android:layout_weight="1"
-                android:text="-"
-                tools:ignore="ButtonStyle" />
+                android:text="-" />
 
             <Button
                 android:id="@+id/field_0_1"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                android:layout_weight="1"
                 android:text="-" />
 
             <Button
                 android:id="@+id/field_0_2"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                android:layout_weight="1"
                 android:text="-" />
         </LinearLayout>
 
@@ -56,27 +55,25 @@
 
             <Button
                 android:id="@+id/field_1_0"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                android:layout_weight="1"
                 android:text="-" />
 
             <Button
                 android:id="@+id/field_1_1"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                android:layout_weight="1"
                 android:text="-" />
 
             <Button
                 android:id="@+id/field_1_2"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                android:layout_weight="1"
                 android:text="-" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -87,26 +84,23 @@
 
             <Button
                 android:id="@+id/field_2_0"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                android:layout_weight="1"
                 android:text="-" />
 
             <Button
                 android:id="@+id/field_2_1"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                android:layout_weight="1"
                 android:text="-" />
 
             <Button
                 android:id="@+id/field_2_2"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                android:layout_weight="1"
                 android:text="-" />
         </LinearLayout>
     </LinearLayout>
@@ -117,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:text="About"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +124,6 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

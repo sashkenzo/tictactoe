@@ -20,7 +20,8 @@ class MainAbout : AppCompatActivity() {
         }
         val btnPlay: Button = findViewById(R.id.button_play);
         btnPlay.setOnClickListener {
-            val intent = Intent(this, MainGameBoard::class.java);
+            val intent = Intent(this, MainActivity::class.java);
+
             startActivity(intent);
         }
         val btnExit: Button = findViewById(R.id.button_exit);
